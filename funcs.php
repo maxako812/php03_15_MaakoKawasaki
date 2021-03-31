@@ -7,12 +7,19 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES);
 }
 
+// DBに繋ぐ関数
 function connectDB(){
 
     try {
-        $pdo = new PDO('mysql:dbname=ramen_db;charset=utf8;host=localhost', 'root', 'root');
+        $pdo = new PDO('mysql:dbname=ra-men_db;charset=utf8;host=localhost', 'root', 'root');
+        return $pdo;
     } catch (PDOException $e) {
         exit('DBConnectError:' . $e->getMessage());
     }
+}
+
+// ファイル名を元に拡張子を返す関数
+function getExtension(string $file): string{
+    return pathinfo($file, PATHINFO_EXTENSION);
 }
 

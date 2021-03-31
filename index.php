@@ -20,12 +20,13 @@
     <!-- Head[End] -->
 
     <!-- Main[Start] -->
-    <form method="POST" action="confirm.php">
+    <!-- <form name="ramenform" method="POST" action="register.php"　enctype="multipart/form-data"> -->
+    <form name="upload-form" action="register.php" method="POST" enctype="multipart/form-data">
         <div class="jumbotron">
             <fieldset>
                 <legend>ラーメンDB</legend>
                 <label>店名：<input type="text" name="shopname"></label><br>
-                <label>訪問日：<input type="text" name="shopname"></label><br>
+                <label>訪問日：<input type="date" name="visitdate"></label><br>
                 <label>食べたメニュー：<input type="text" name="menu"></label><br>
                 <div class="rating">
                     <input id="rating1" type="radio" name="rating" value="1" checked><label for="rating1">★</label>
@@ -39,11 +40,14 @@
                     <label for="rating5">★</label>
                 </div>
                 <label><textArea name="detail" rows="4" cols="40"></textArea></label><br>
-                <div class="form-group">
-                    <label>画像を選択</label>
-                    <input type="file" name="image">
-                </div>
-                <input type="submit" value="登録する">
+                <!-- <div class="form-group"> -->
+                <label>画像を選択</label>
+                <!-- アップロード上限サイズは２MB -->
+                <input type="hidden" name="max_file_size" value="2097152">
+                <input type="file" name="image1">
+                <!-- </div> -->
+                <!-- <input type="submit" value="登録する"> -->
+                <button type="submit" value="upload">登録する</button>
             </fieldset>
         </div>
     </form>

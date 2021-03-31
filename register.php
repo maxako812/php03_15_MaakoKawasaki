@@ -14,9 +14,6 @@
     $extension = getExtension($_FILES['image1']['name']);//アップロードされたファイルの拡張子を取得
     $image .= '.' . $extension;
     $file = "./images/$image";
-    // $sql = "INSERT INTO images(name) VALUES (:image)";
-    // $stmt = $dbh->prepare($sql);
-    // ここまで
 
     //画像validation
     // function validate():array{

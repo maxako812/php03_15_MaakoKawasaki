@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My RAMEN LOAD</title>
+    <title>My RAMEN ROAD</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -25,9 +25,9 @@
         <div class="jumbotron">
             <fieldset>
                 <legend>ラーメンDB</legend>
-                <label>店名：<input type="text" name="shopname"></label><br>
-                <label>訪問日：<input type="date" name="visitdate"></label><br>
-                <label>食べたメニュー：<input type="text" name="menu"></label><br>
+                <label>店名：<input type="text" name="shopname" required></label><br>
+                <label>訪問日：<input type="date" name="visitdate" required></label><br>
+                <label>食べたメニュー：<input type="text" name="menu" required></label><br>
                 <div class="rating">
                     <input id="rating1" type="radio" name="rating" value="1" checked><label for="rating1">★</label>
                     <input id="rating2" type="radio" name="rating" value="2">
@@ -39,7 +39,7 @@
                     <input id="rating5" type="radio" name="rating" value="5">
                     <label for="rating5">★</label>
                 </div>
-                <label><textArea name="detail" rows="4" cols="40"></textArea></label><br>
+                <label><textArea name="detail" rows="4" cols="40" required></textArea></label><br>
                 <!-- <div class="form-group"> -->
                 <label>画像を選択</label>
                 <!-- アップロード上限サイズは２MB -->

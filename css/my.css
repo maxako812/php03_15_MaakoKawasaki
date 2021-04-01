@@ -1,0 +1,23 @@
+.rating {
+    line-height: 1;
+    color: gold;
+    font-size: 24px;
+}
+
+.rating input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rating label {
+    display: inline-block;
+}
+
+.rating input:focus + label {
+    outline: 1px solid currentColor;
+}
+
+.rating input:checked + label ~ label {
+    color: grey;
+}

@@ -5,7 +5,7 @@ require_once('funcs.php');
 $pdo = connectDB();
 
 //２．データ取得SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_table ORDER BY visitdate DESC");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -18,9 +18,12 @@ if ($status == false) {
     //Selectデータの数だけ自動でループしてくれる
     //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $view .= '<p>' . h($result['shopname']) . ' ' . h($result['visitdate']) . '</p>';
-        $view .= '<p>' . '<img src="./images/' . $result['image'].  '" width="300" height="300">' . '</p>';
-
+        $view .= '<tr><td>' . h($result['shopname']) . '</td>';
+        $view .= '<td>' . h($result['visitdate']) . '</td>';
+        $view .= '<td>' . h($result['menu']) . '</td>';
+        $view .= '<td>' . '<img src="./images/' . $result['image'].  '" width="300" height="300">'. '</td>';
+        $view .= '<td>' . h($result['rating']) . '</td>';
+        $view .= '<td>' . h($result['detail']) . '</td></tr>';
     }
 }
 ?>
@@ -33,14 +36,9 @@ if ($status == false) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ラーメンロード</title>
-    <link rel="stylesheet" href="css/range.css">
+    <!-- <link rel="stylesheet" href="css/range.css"> -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        div {
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+
 </head>
 
 <body id="main">
@@ -58,7 +56,19 @@ if ($status == false) {
 
     <!-- Main[Start] -->
     <div>
-        <div class="container jumbotron"><?= $view ?></div>
+        <div class="container jumbotron">
+        <table class="table table-striped">
+            <tr>
+                <th>店名</th>
+                <th>訪問日</th>
+                <th>メニュー</th>
+                <th>写真</th>
+                <th>評価</th>
+                <th>詳細</th>
+            </tr>
+            <?= $view ?>
+        </table>
+        </div>
     </div>
     <!-- Main[End] -->
 

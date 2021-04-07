@@ -1,21 +1,20 @@
 
-<!-- とりあえず全部コピ -->
-
 <?php
 require_once('funcs.php');
 $pdo = connectDB();
 $id = $_GET['id'];
-//２．データ登録SQL作成
+// 指定したIDのデータを取得
 $sql = "SELECT * FROM gs_bm_table WHERE id=" . $id . ";";
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
-//３．データ表示
+//　データ表示
 if ($status == false) {
     sql_error($status);
 } else {
     $result = $stmt->fetch();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,6 +22,9 @@ if ($status == false) {
     <title>My RAMEN ROAD</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/my.css" rel="stylesheet">
+    <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
 
 </head>
 <body>
@@ -43,7 +45,8 @@ if ($status == false) {
                 <label>訪問日：<input type="date" name="visitdate" value="<?= $result['visitdate'] ?>"></label><br>
                 <label>食べたメニュー：<input type="text" name="menu" value="<?= $result['menu'] ?>"></label><br>
                 <div class="rating">
-                    <input id="rating1" type="radio" name="rating" value="1" checked><label for="rating1">★</label>
+                    <input id="rating1" type="radio" name="rating" value="1">
+                    <label for="rating1">★</label>
                     <input id="rating2" type="radio" name="rating" value="2">
                     <label for="rating2">★</label>
                     <input id="rating3" type="radio" name="rating" value="3">
@@ -62,12 +65,27 @@ if ($status == false) {
                 <!-- ↓追加 -->
                 <input type="hidden" name="id" value="<?= $result['id'] ?>">
                 <button class="btn btn-default" type="submit" value="update">更新する</button>
-                <!-- ★BUTTONでの書き方がよくわからない -->
-                <!-- <button class="btn btn-default" onclick="location.href='delete.php?id=<?= $result['id'] ?>'" type="submit" value="delete">削除する</button> -->
-                <a href="delete.php?id=<?= $result['id'] ?>">削除する</a>
+                <button class="btn btn-default" type="button" onclick="location.href='delete.php?id=<?= $result['id'] ?>'" value="delete">削除する</button>
 
             </fieldset>
         </div>
     </form>
+
+    <script>
+    // DBから
+        let rating = <?= $result['rating']?>;
+        if (rating == 1){
+            $('#rating1').prop('checked',true);
+        }else if (rating == 2){
+            $('#rating2').prop('checked',true);
+        }else if (rating == 3){
+            $('#rating3').prop('checked',true);
+        }else if (rating == 4){
+            $('#rating4').prop('checked',true);
+        }else if (rating == 5){
+            $('#rating5').prop('checked',true);
+        }
+    </script>
+
 </body>
 </html>

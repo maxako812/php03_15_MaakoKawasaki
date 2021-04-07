@@ -11,6 +11,7 @@ $stmt = $pdo->prepare($sql_select);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute(); //実行
 
+// ①SQLエラーチェック
 if ($status == false) {
     sql_error($status);
 } else {
@@ -24,18 +25,12 @@ if(file_exists($filepath)){
 }
 
 // ②DB削除処理
-
 $sql_delete = "DELETE FROM gs_bm_table WHERE id = :id;";
 $stmt = $pdo->prepare($sql_delete);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
 $status = $stmt->execute(); //実行
 
-//画像ファイルの削除
-
-
-
-// SQLエラーチェック
+// ②SQLエラーチェック
 if ($status == false) {
     sql_error($stmt);
 } else {

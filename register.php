@@ -15,25 +15,6 @@
     $image .= '.' . $extension;
     $file = "./images/$image";
 
-    //画像validation
-    function validate():array{
-        //PHPによるエラーチェック
-        if($_FILES['image1']['error']!== UPLOAD_ERR_OK){
-            return [false, 'アップロードエラーを検出しました'];
-        }
-
-        // 拡張子のチェック
-        if(!in_array(getExtension($_FILES['image1']['name']), ['jpg', 'jpeg','png','gif','JPG'])){
-            return [false, '画像ファイルのみアップロード可能です'];
-        }
-
-        //ファイルサイズチェック
-        if(filesize($_FILES['image1']['tmp_name']) > 1024 * 1024 * 2){
-            return [false, 'ファイルサイズは2MBまでとしてください'];
-        }
-
-        return[true, null];
-    }
 
     //画像の不正チェック
     list($result, $message) = validate();
@@ -72,10 +53,9 @@
 
     if ($status == false) {
         //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
-        $error = $stmt->errorInfo();
-        exit("ErrorMessage:" . print_r($error, true));
+        sql_error($stmt);
     } else {
     //５．index.phpへリダイレクト
-    header('Location: index.php');
+        redirect('index.php');
     }
 

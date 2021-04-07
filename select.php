@@ -18,7 +18,8 @@ if ($status == false) {
     //Selectデータの数だけ自動でループしてくれる
     //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $view .= '<tr><td>' . h($result['shopname']) . '</td>';
+        $view .= '<tr class= "clickable-row" data-href = "detail.php?id=' . h($result['id']) . '">';
+        $view .= '<td>' . h($result['shopname']) . '</td>';
         $view .= '<td>' . h($result['visitdate']) . '</td>';
         $view .= '<td>' . h($result['menu']) . '</td>';
         $view .= '<td>' . '<img src="./images/' . $result['image'].  '" width="300" height="300">'. '</td>';
@@ -38,6 +39,9 @@ if ($status == false) {
     <title>ラーメンロード</title>
     <!-- <link rel="stylesheet" href="css/range.css"> -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
 
 </head>
 
@@ -72,6 +76,13 @@ if ($status == false) {
     </div>
     <!-- Main[End] -->
 
+    <script>
+       $(function($) {
+            $(".clickable-row").css("cursor","pointer").click(function() {
+            location.href = $(this).data("href");
+            });
+        });
+    </script>
 </body>
 
 </html>

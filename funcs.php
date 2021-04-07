@@ -23,3 +23,15 @@ function getExtension(string $file): string{
     return pathinfo($file, PATHINFO_EXTENSION);
 }
 
+function sql_error($stmt)
+{
+    $error = $stmt->errorInfo();
+    exit("SQLError:" . print_r($error, true));
+}
+
+//リダイレクト関数: redirect($file_name)
+function redirect($file_name)
+{
+    header("Location: " . $file_name );
+    exit();
+}

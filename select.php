@@ -1,5 +1,8 @@
 <?php
+session_start();
 require_once('funcs.php');
+// 0.ログイン確認
+loginCheck();
 
 //1.  DB接続します
 $pdo = connectDB();

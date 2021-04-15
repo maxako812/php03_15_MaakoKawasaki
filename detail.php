@@ -1,6 +1,9 @@
 
 <?php
+session_start();
 require_once('funcs.php');
+loginCheck();
+
 $pdo = connectDB();
 $id = $_GET['id'];
 // 指定したIDのデータを取得

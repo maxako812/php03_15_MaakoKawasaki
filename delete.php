@@ -1,8 +1,12 @@
 <!-- とりあえず全部コピ -->
 
 <?php
+session_start();
+
 $id   = $_GET['id'];
 require_once('funcs.php');
+loginCheck();
+
 // DBに繋ぐ関数の呼び出し
 $pdo = connectDB();
 // ①画像ファイル削除処理：まずは画像のファイル名を呼び出す

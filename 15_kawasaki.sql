@@ -1,3 +1,6 @@
+
+
+--- gs_bm_tableの中身です
 -- phpMyAdmin SQL Dump
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
